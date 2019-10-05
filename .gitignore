@@ -1,0 +1,7 @@
+whatsappbot-app-d3a4d2824803.json
+.pytest_cache
+staticfiles
+db.sqlite3
+media
+.env
+bot/migrations
