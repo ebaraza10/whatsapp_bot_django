@@ -9,3 +9,5 @@ python-decouple
 django-model-utils
 django-oauth-toolkit
 pytest
+celery==4.4.1
+redis==3.4.1

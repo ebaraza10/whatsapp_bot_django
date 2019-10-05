@@ -28,5 +28,44 @@ services:
     networks:
       - nginx_network
 
+  redis:
+    restart: always
+    image: redis:alpine
+    networks:
+      - redis_net
+
+  celery:
+    restart: always
+    image: whatsapp_bot
+    command: celery -A arbiter worker -l info
+    volumes:
+      - ${HOST_SYSTEM_LOCATION}:/usr/src/app
+    env_file: .env
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=${CELERY_SECRET_KEY}
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    depends_on:
+      - redis
+    networks:
+      - redis_net
+
+  celery_beat:
+    restart: always
+    image: whatsapp_bot
+    command: celery -A arbiter beat -l info
+    volumes:
+      - ${HOST_SYSTEM_LOCATION}:/usr/src/app
+    env_file: .env
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=${CELERY_BEAT_SECRET_KEY}
+      - DJANGO_ALLOWED_HOSTS=localhost 127.0.0.1 [::1]
+    depends_on:
+      - redis
+    networks:
+      - redis_net
+
 networks:
   nginx_network:
+  redis_net:

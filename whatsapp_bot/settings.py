@@ -132,4 +132,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+# Auth2 setttings
 from auth_settings import *
+# Celery and celery beat settings
+from celery_and_beat_settings import *
