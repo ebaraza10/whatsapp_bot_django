@@ -28,5 +28,4 @@ class BotView(APITestCase):
         }
         
         response = client.get('/bot/reminders/', data=data)
-
         assert response.status_code == 200
