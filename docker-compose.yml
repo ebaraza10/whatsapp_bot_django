@@ -1,0 +1,32 @@
+version: '3.0'
+
+services:
+  api:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: sh -c "gunicorn whatsapp_bot.wsgi:application --bind 0.0.0.0:8009"
+    expose:
+      - "8009"
+    env_file: .env
+    volumes:
+      - ${HOST_SYSTEM_LOCATION}:/usr/src/app
+    networks:
+      - nginx_network
+  nginx:
+    restart: always
+    build: ./nginx
+    volumes:
+      - ${HOST_SYSTEM_LOCATION}/staticfiles:/usr/src/app/staticfiles
+      - ${HOST_SYSTEM_LOCATION}/media:/usr/src/app/media
+    ports:
+      - 8090:1337
+      - 8089:8088
+    depends_on:
+      - api
+    networks:
+      - nginx_network
+
+networks:
+  nginx_network:
