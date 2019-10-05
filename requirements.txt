@@ -1,0 +1,11 @@
+django
+djangorestframework
+gspread
+twilio
+oauth2client
+python-dateutil
+gunicorn
+python-decouple
+django-model-utils
+django-oauth-toolkit
+pytest
