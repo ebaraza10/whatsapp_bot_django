@@ -5,10 +5,11 @@ Allow users to set reminders with dates and reminder messages via Whatsapp
 Automatically sends set reminders on the chosen date via Whatsapp
 
 ## Technologies used:
-* Python(Flask)
+* Python(Django)
 * Google sheets(storage of reminders/database)
 * Docker
 * Celery
+* Celery beat
 * Redis
 
 
