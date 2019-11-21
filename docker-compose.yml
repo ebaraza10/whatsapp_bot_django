@@ -1,0 +1,18 @@
+version: '3.0'
+
+services:
+  app:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    command: gunicorn --bind 0.0.0.0:5001 app:app
+    ports:
+      - 5001:5001
+    env_file: .env
+    volumes:
+      - ${HOST_SYSTEM_LOCATION}:/usr/src/app
+  scheduler:
+    restart: always
+    image: whatsapp-bot_app
+    command: python3 scheduler.py

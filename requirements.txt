@@ -1,0 +1,8 @@
+flask
+gspread
+twilio
+oauth2client
+python-dateutil
+apscheduler
+gunicorn
+python-decouple
